@@ -15,39 +15,20 @@ public class Team {
         this.daysWorked = daysWorked;
     }
 
-    public Team() {
-    }
-
     public Long getEmployeeId1() {
         return employeeId1;
-    }
-
-    public void setEmployeeId1(Long employeeId1) {
-        this.employeeId1 = employeeId1;
     }
 
     public Long getEmployeeId2() {
         return employeeId2;
     }
 
-    public void setEmployeeId2(Long employeeId2) {
-        this.employeeId2 = employeeId2;
-    }
-
     public Long getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(Long projectID) {
-        this.projectID = projectID;
-    }
-
     public Long getDaysWorked() {
         return daysWorked;
-    }
-
-    public void setDaysWorked(Long daysWorked) {
-        this.daysWorked = daysWorked;
     }
 
     @Override

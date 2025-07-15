@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -69,8 +70,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public byte[] generateCSV(List<Team> partnerships) {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(
-                     new OutputStreamWriter(byteArrayOutputStream, "UTF-8"),
-                     CSVFormat.DEFAULT.withHeader("EmployeeID1", "EmployeeID2", "ProjectID", "DaysWorked"))) {
+                     new OutputStreamWriter(byteArrayOutputStream, StandardCharsets.UTF_8),
+                     CSVFormat.DEFAULT.builder()
+                             .setHeader(HEADERS)
+                             .setSkipHeaderRecord(true).get())) {
             for (Team team : partnerships) {
                 csvPrinter.printRecord(
                         team.getEmployeeId1(),

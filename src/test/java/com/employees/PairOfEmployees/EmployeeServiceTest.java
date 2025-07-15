@@ -33,7 +33,7 @@ public class EmployeeServiceTest {
             3,100,2025-01-01,2025-01-30
             """;
 
-        MultipartFile file = null;
+        MultipartFile file;
         try {
             file = new MockMultipartFile(
                     "file",
@@ -59,7 +59,7 @@ public class EmployeeServiceTest {
             3,100,2025-01-01,2025-01-30
             """;
 
-        MultipartFile file = null;
+        MultipartFile file;
         try {
             file = new MockMultipartFile(
                     "file",
