@@ -51,10 +51,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             for (CSVRecord csvRecord : csvParser) {
                 EmployeeProjectRecord record = new EmployeeProjectRecord();
-                record.setEmployeeId(Long.parseLong(csvRecord.get("EmpID")));
-                record.setProjectID(Long.parseLong(csvRecord.get("ProjectID")));
-                record.setDateFrom(parseDate(csvRecord.get("DateFrom")));
-                String dateTo = csvRecord.get("DateTo");
+                record.setEmployeeId(Long.parseLong(csvRecord.get("EmpID").trim()));
+                record.setProjectID(Long.parseLong(csvRecord.get("ProjectID").trim()));
+                record.setDateFrom(parseDate(csvRecord.get("DateFrom").trim()));
+                String dateTo = csvRecord.get("DateTo").trim();
                 record.setDateTo(dateTo == null || dateTo.equalsIgnoreCase("NULL") ? LocalDate.now() : parseDate(dateTo));
 
                 records.add(record);
