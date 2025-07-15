@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+     <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Employees</h2>
+
+    <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        <input type="file" name="file" accept=".csv" required>
+        <select name="reportType" onchange="updateFormAction()">
+            <option title="To find the pair of employees who worked together the longest on a project" value="max_days">Max Days</option>
+            <option value="all">All Common Projects</option>
+        </select>
+
+        <input type="submit" value="Search">
+    </form>
+
+    <div class="description">
+        <ul>
+            <li>"Max Days" to find the pair of employees who worked together the longest on a project</li>
+            <li>"All Common Projects" to find all pairs of employees who worked together on any project</li>
+        </ul>
+    </div>
+
+    <div th:if="${error}" class="error">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div th:if="${partnerships}">
+        <table>
+            <thead>
+            <tr>
+                <th>Employee ID #1</th>
+                <th>Employee ID #2</th>
+                <th>Project ID</th>
+                <th>Days Worked</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="team, iterStat : ${partnerships}">
+                <td th:text="${team.employeeId1}"></td>
+                <td th:text="${team.employeeId2}"></td>
+                <td th:text="${team.projectID}"></td>
+                <td th:text="${team.daysWorked}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="download-section">
+            <a href="/file/downloadCSV" class="btn-download">Download Results</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateFormAction() {
+        const form = document.getElementById('uploadForm');
+        const reportType = form.querySelector('select[name="reportType"]').value;
+        form.action = '/file/uploadCSV/' + reportType;
+    }
+    // Ensure the form action is set on page load
+    window.onload = updateFormAction;
+</script>
+</body>
+</html>
