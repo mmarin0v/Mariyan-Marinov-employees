@@ -3,10 +3,10 @@ package com.employees.PairOfEmployees.model;
 import java.util.Objects;
 
 public class Team {
-    private Long employeeId1;
-    private Long employeeId2;
-    private Long projectID;
-    private Long daysWorked;
+    private final Long employeeId1;
+    private final Long employeeId2;
+    private final Long projectID;
+    private final Long daysWorked;
 
     public Team(Long employeeId1, Long employeeId2, Long projectID, Long daysWorked) {
         this.employeeId1 = Math.min(employeeId1, employeeId2);
